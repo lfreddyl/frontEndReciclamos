@@ -1,0 +1,60 @@
+<p class="mt-3" style="font-size: 1.2em">Mis Recolecciones</p>
+
+<div
+  class="d-flex justify-content-center"
+  *ngIf="misReciclajesArray.length === 0 && arrayVacio === false"
+>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Cargando...</span>
+  </div>
+</div>
+<div
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+  *ngIf="arrayVacio === true"
+>
+  <p style="font-size: 1.5em">No tienes recolecciones</p>
+  <fa-icon [icon]="faRecycle" style="font-size: 100px"></fa-icon>
+  <p style="font-size: 1.5em">Espera que tus postulaciones sean Asignadas!</p>
+</div>
+<div
+  *ngFor="let item of misReciclajesArray"
+  class="d-flex pb-3 justify-content-center"
+>
+  <div class="card card-chats">
+    <div class="card-header">
+      <div class="d-flex">
+        <div>
+          <p class="text-date">{{ convertirFecha(item.publicacion.fecha) }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ item.publicacion.descripcion }}</p>
+      <p class="card-text">
+        <strong>Dirección:</strong> {{ item.publicacion.direccion }}
+      </p>
+      <p class="card-text">
+        <strong>Cantidad:</strong> {{ item.publicacion.cantidad }} Kilogramos
+      </p>
+    </div>
+
+   
+    <div class="card-footer text-muted">
+
+      <button
+        (click)="navegarPublicacion(item.publicacion._id)"
+        class="button-publicaciones ver-publicacion"
+      >
+        <fa-icon [icon]="faEye" class="icon"></fa-icon>
+
+        Ver Publicación
+      </button>
+    </div>
+  </div>
+  <app-sms [idReceptor]="idUsuarioPublicacion"> </app-sms>
+</div>

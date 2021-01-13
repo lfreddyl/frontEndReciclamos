@@ -1,0 +1,28 @@
+<div class="d-flex flex-column aside p-3">
+  <nav>
+    <div class="d-flex nav-item-aside">
+      <div class="icono">
+        <fa-icon
+          [icon]="faHome"
+          class="icon-aside"
+          style="color: rgb(9, 143, 92);"
+        ></fa-icon>
+      </div>
+      <a class="aside-item" style="color: rgb(9, 143, 92);" href="#"> Inicio </a>
+    </div>
+    <label class="mt-3" style="font-weight: bold;">RECOLECTAR</label>
+    <div class="d-flex mt-3 nav-item-aside">
+      <div class="icono">
+        <fa-icon [icon]="faRecycle" class="icon-aside"></fa-icon>
+      </div>
+      <a class="aside-item " [routerLink]="['misRecolecciones']"> Mis Recolecciones </a>
+    </div>
+    <div class="d-flex mt-3 nav-item-aside">
+      <div class="icono">
+        <fa-icon [icon]="faUsers" class="icon-aside"></fa-icon>
+      </div>
+      <a class="aside-item " [routerLink]="['misPostulaciones']"> Mis Postulaciones </a>
+    </div>
+  </nav>
+
+</div>

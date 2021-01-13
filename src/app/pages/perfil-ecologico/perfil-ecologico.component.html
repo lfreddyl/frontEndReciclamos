@@ -1,0 +1,63 @@
+<div class="card">
+    <div class="card-header">
+      <strong>{{usuarioPerfil.nombres}} {{usuarioPerfil.apellidos}}</strong>
+    </div>
+    <div class="card-body" style="display: flex; justify-content: center;">
+      <img src="{{usuarioPerfil.img}}" style="width: 200px; height:200px; border-radius: 9999px;" alt="">
+      
+    </div>
+    <div class="card-body">
+        <p ><strong>Correo: </strong>{{usuarioPerfil.correo}}</p>
+        <p ><strong>Dirección: </strong>{{usuarioPerfil.direccion}}</p>
+        <p ><strong>Telefóno: </strong>{{usuarioPerfil.telefono}}</p>
+
+      </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-header">
+      <strong>Publicaciones de reciclaje del Usuario </strong>
+    </div>
+    <div class="card-body" >
+    <p class="text-date"> Publicaciones Realizadas: {{tamanoPublicaciones}}</p>
+    <p class="text-date">Publicaciones Asignadas: {{publicacionesAsignadas}}</p>
+    <p class="text-date">Publicaciones Pendientes: {{publicacionesPendientes}}</p>
+
+    </div>
+    <div class="card-body" >
+        <div class="chart">
+            <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              [colors]="pieChartColors"
+            >
+            </canvas>
+          </div>
+    
+    </div>
+
+  </div>
+  <div class="card mt-3">
+    <div class="card-header">
+      <strong>Recolecciones del Usuario</strong>
+    </div>
+    <div class="card-body" >
+    <p class="text-date">Recolecciones Asignadas: {{postulacionesAsignadas}}</p>
+    <p class="text-date">Postulaciones Asignadas para la recolección: {{postulacionesAsignadas}}</p>
+    <p class="text-date">Postulaciones Pendientes para la recolección: {{postulacionesPendientes}}</p>
+
+    </div>
+    <div class="card-body" >
+        <div class="chart ">
+            <canvas baseChart
+              [data]="pieChartData2"
+              [labels]="pieChartLabels2"
+              [chartType]="pieChartType"
+              [colors]="pieChartColors2"
+            >
+            </canvas>
+          </div>
+    
+    </div>
+
+  </div>

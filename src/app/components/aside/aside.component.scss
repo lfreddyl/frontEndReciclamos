@@ -1,0 +1,54 @@
+@import "../../../variables/global.scss";
+
+.aside{
+    border-radius: 10px;
+   height:100% ;
+   position:fixed;
+  background-color: $color-primario;
+  width: 450px; 
+}
+.icon-aside{
+  font-size: 1.3em;
+  color:$color-texto-h1;
+  margin-right: 20px;
+}
+.aside-item{
+  text-decoration: none;
+  color:$color-texto-h1;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+.aside-item:hover{
+  color:rgb(9, 143, 92);
+}
+
+.icono{
+  width: 50px;
+}
+.nav-item-aside{
+  width: 250px;
+  border-radius: 9999px;
+  height: 40px;
+  align-items: center;
+  padding: 10px;
+}
+.nav-item-aside:hover{
+  background-color: rgba(41, 168, 145, 0.241);
+}
+
+@media (max-width: 1800px) {
+  .aside{
+      height: 350px;
+      position: fixed;
+      width: 300px;
+      height: 100vh;
+  }
+}
+  @media (max-width: 1000px) {
+    .aside{
+        height: 350px;
+        position: unset;
+        width: auto;
+    }
+  }

@@ -1,0 +1,405 @@
+<section class="login">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 content-login">
+        <div class="row">
+          <p
+            class="text-justify p-5"
+            style="
+              font-size: 90px;
+              font-family: 'SansPro';
+              margin-top: 80px;
+              margin-left: 20px;
+              color: #fff;
+            "
+          >
+            RECICLAMOS
+          </p>
+          <p
+            class="text-justify p-5"
+            style="
+              font-size: 25px;
+              font-family: 'SansPro';
+              margin-top: 80px;
+              margin-left: 20px;
+              color: rgba(240, 240, 240, 0.973);
+            "
+          >
+            La plataforma que te permite gestionar tus procesos de reciclaje a
+            través de los usuarios registrados en el sistema.
+          </p>
+          <div
+            class="row w-100 justify-content-center"
+            style="margin-top: 100px"
+          >
+            <img
+              src="../../../assets/img/reciclar.png"
+              height="200"
+              width="200"
+              alt="reciclar"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="col-lg-9 mx-auto">
+          <div class="row header justify-content-center align-items-end">
+            <p class="title">Iniciar Sesión</p>
+          </div>
+
+          <div class="row">
+            <!-- Contenido de los Formularios -->
+            <div class="col">
+              <div *ngIf="isError === true" class="error2">
+                <div>Ingrese todos los campos porfavor</div>
+              </div>
+              <div *ngIf="isErrorLogin === true" class="error2">
+                <div>Usuario o Contraseña incorrectos</div>
+              </div>
+              <form
+                #formGuardar="ngForm"
+                role="form"
+                (ngSubmit)="login(formGuardar)"
+                novalidate=""
+              >
+                <div class="form-group mt-5">
+                  <label for="Correo" class="label-input">Correo </label>
+                  <input
+                    [(ngModel)]="credenciales.correo"
+                    #correo="ngModel"
+                    required
+                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    name="correo"
+                    id="correo"
+                    placeholder="Ingresa tu correo"
+                    class="form-control input"
+                    type="text"
+                  />
+                  <div *ngIf="correo.touched && !correo.valid" class="error">
+                    <div *ngIf="correo.errors.required">
+                      Ingrese el correo porfavor
+                    </div>
+                    <div *ngIf="correo.errors.pattern">
+                      Ingrese un correo válido porfavor
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group mt-5">
+                  <label for="my-input" class="label-input">Contraseña </label>
+                  <input
+                    [(ngModel)]="credenciales.password"
+                    #password="ngModel"
+                    required
+                    id="password"
+                    placeholder="Ingresa tu contraseña"
+                    class="form-control input"
+                    type="password"
+                    name="password"
+                  />
+                  <div
+                    *ngIf="password.touched && !password.valid"
+                    class="error"
+                  >
+                    <div *ngIf="password.errors.required">
+                      Ingrese su contraseña
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row tabs justify-content-start align-items-center mt-5"
+                >
+                  <!-- Links de los formularios -->
+                  <button type="submit" class="tabs-item">
+                    Iniciar Sesión
+                  </button>
+                </div>
+                <div
+                  class="row tabs justify-content-start align-items-center mt-5 ml-2"
+                >
+                  <span style="color: rgb(13, 46, 68)"
+                    >Aún no tienes Cuenta?</span
+                  >
+                  <a
+                    class="links"
+                    href=""
+                    data-toggle="modal"
+                    data-target="#exampleModalCenter"
+                  >
+                    <strong> Regístrate Aquí</strong>
+                  </a>
+                </div>
+              </form>
+              <div class="row justify-content-start align-items-center mt-5">
+                <!-- Links de los formularios -->
+                <a class="links" href=""
+                data-toggle="modal"
+                    data-target="#enviarCorreoModalCenter"
+                >Olvide mi Contraseña</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modla registrarse-->
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title label-input" style="font-size: 1.2em;" id="exampleModalLongTitle">Registro</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span  style="color: rgb(13, 46, 68);">Ingresa tus datos personales para completar el registro!</span>
+
+        <div *ngIf="isErrorRegistro === true" class="error2">
+          <div>Ingrese todos los campos porfavor</div>
+        </div>
+        <form
+          #formGuardarRegistro="ngForm"
+          role="form"
+          (ngSubmit)="registro(formGuardarRegistro)"
+          novalidate=""
+        >
+          <div class="form-group mt-5">
+            <label for="Nombres" class="label-input">Nombres </label>
+            <input
+              [(ngModel)]="usuario.nombres"
+              #nombresRegistro="ngModel"
+              required
+              pattern="^[a-zA-ZáéíóúñÁÉÍÓÚÑ -]*"
+              name="nombresRegistro"
+              id="nombresRegistro"
+              placeholder="Ingresa tus nombres"
+              class="form-control input"
+              type="text"
+              minlength="3"
+              maxlength="35"
+            />
+            <div
+              *ngIf="nombresRegistro.touched && !nombresRegistro.valid"
+              class="error"
+            >
+              <div *ngIf="nombresRegistro.errors.required">
+                Ingrese sus nombres porfavor
+              </div>
+              <div *ngIf="nombresRegistro.errors.pattern">
+                El nombre no puede contener números o caracteres especiales
+              </div>
+              <div *ngIf="nombresRegistro.errors.minlength">
+                El nombre no puede contener menos de 3 caracteres
+              </div>
+              <div *ngIf="nombresRegistro.errors.maxlength">
+                Los nombres no pueden contener más de 35 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-5">
+            <label for="Nombres" class="label-input">Apellidos </label>
+            <input
+              [(ngModel)]="usuario.apellidos"
+              #apellidosRegistro="ngModel"
+              required
+              pattern="^[a-zA-ZáéíóúñÁÉÍÓÚÑ -]*"
+              name="apellidosRegistro"
+              id="apellidosRegistro"
+              placeholder="Ingresa tus apellidos"
+              class="form-control input"
+              type="text"
+              minlength="3"
+              maxlength="35"
+            />
+            <div
+              *ngIf="apellidosRegistro.touched && !apellidosRegistro.valid"
+              class="error"
+            >
+              <div *ngIf="apellidosRegistro.errors.required">
+                Ingrese sus apellidos porfavor
+              </div>
+              <div *ngIf="apellidosRegistro.errors.pattern">
+                El apellido no puede contener números o caracteres especiales
+              </div>
+              <div *ngIf="apellidosRegistro.errors.minlength">
+                El apellido no puede contener menos de 3 caracteres
+              </div>
+              <div *ngIf="apellidosRegistro.errors.maxlength">
+                Los apellidos no pueden contener más de 35 caracteres
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-5">
+            <label for="Correo" class="label-input">Correo </label>
+            <input
+              [(ngModel)]="usuario.correo"
+              #correoRegistro="ngModel"
+              required
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              name="correoRegistro"
+              id="correoRegistro"
+              placeholder="Ingresa tu correo"
+              class="form-control input"
+              type="text"
+            />
+            <div
+              *ngIf="correoRegistro.touched && !correoRegistro.valid"
+              class="error"
+            >
+              <div *ngIf="correoRegistro.errors.required">
+                Ingrese el correo porfavor
+              </div>
+              <div *ngIf="correoRegistro.errors.pattern">
+                Ingrese un correo válido porfavor
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-5">
+            <label for="my-input" class="label-input">Contraseña </label>
+            <input
+              [(ngModel)]="usuario.password"
+              #passwordRegistro="ngModel"
+              required
+              id="passwordRegistro"
+              placeholder="Ingresa tu contraseña nueva"
+              class="form-control input"
+              type="password"
+              name="passwordRegistro"
+              minlength="8"
+            />
+            <div
+              *ngIf="passwordRegistro.touched && !passwordRegistro.valid"
+              class="error"
+            >
+              <div *ngIf="passwordRegistro.errors.required">
+                Ingrese su contraseña porfavor
+              </div>
+              <div *ngIf="passwordRegistro.errors.minlength">
+                Su contraseña debe tener al menos 8 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="row tabs justify-content-start align-items-center mt-5">
+            <button type="submit" class="tabs-item">Registrarse</button>
+            <!-- Links de los formularios -->
+            <button
+              type="button"
+              class="cancelar"
+              style="
+                height: 2em;
+                border: none;
+                border-radius: 20px;
+                width: 10em;margin-left: 10px;
+              "
+              data-dismiss="modal"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal enviar correo-->
+
+<div
+  class="modal fade"
+  id="enviarCorreoModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title label-input"style="font-size: 1.2em;" id="exampleModalLongTitle">Recuperar contraseña</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+
+        <span  style="color: rgb(13, 46, 68);">Ingresa tu correo registrado en la plataforma para recuperar tu contraseña</span>
+ <div *ngIf="isErrorEnviarEmail === true" class="error2">
+                <div>Ingrese el correo porfavor</div>
+              </div>
+        <form
+        #formEnviarCorreo="ngForm"
+      role="form"
+      (ngSubmit)="enviarCorreo(formEnviarCorreo)"
+      novalidate=""
+    >
+          <div class="form-group mt-5">
+            <label for="Correo" class="label-input">Correo </label>
+            <input
+              [(ngModel)]="enviarCorreoUser"
+              #correoEnviar="ngModel"
+              required
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              name="correoEnviar"
+              id="correoEnviar"
+              placeholder="Ingresa tu correo"
+              class="form-control input"
+              type="text"
+            />
+            <div
+              *ngIf="correoEnviar.touched && !correoEnviar.valid"
+              class="error"
+            >
+              <div *ngIf="correoEnviar.errors.required">
+                Ingrese el correo porfavor
+              </div>
+              <div *ngIf="correoEnviar.errors.pattern">
+                Ingrese un correo válido porfavor
+              </div>
+            </div>
+          </div>
+          <div class="row tabs justify-content-start align-items-center mt-5">
+            <button type="submit" class="tabs-item">Enviar</button>
+            <!-- Links de los formularios -->
+            <button
+              type="button"
+              class="cancelar"
+              style="
+                height: 2em;
+                border: none;
+                border-radius: 20px;
+                width: 10em;margin-left: 10px;
+              "
+              data-dismiss="modal"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

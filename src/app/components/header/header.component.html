@@ -1,0 +1,262 @@
+<nav class="navbar navbar-expand-lg navbar-light row header">
+  <div class="col-5 col-sm-2 col-md-1 col-lg-2">
+    <a class="navbar-brand" style="color: rgb(255, 255, 255);font-size: 1em;font-family:fantasy;top: 3px;" href="#"
+      ><img
+        src="../../../assets/img/reciclar.png"
+        height="50px"
+        width="50px"
+        alt="..."
+      /> Por un planeta mas limpio!</a
+    >
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-12 col-sm-12 col-md-11 col-lg-9 " id="navbarSupportedContent">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 "  >
+      <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="d-flex flex-row justify-content-end">
+              <div class="flex-column" style="width: 100%">
+                <input
+                  class="input-search"
+                  type="search"
+                  placeholder="Ingrese su búsqueda de nombres,correos o publicaciones"
+                  aria-label="Search"
+                  [(ngModel)]="valorBusqueda"
+                />
+              </div>
+              <div class="flex-column">
+                <button class="button"(click)="navegarBusqueda()">
+                  <fa-icon [icon]="faSearch"  style="color: rgb(27, 35, 46)"></fa-icon>
+                </button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6" >
+      <div class="row align-items-center justify-content-center">
+        <div class="col-sm-4 col-md-6 col-lg-2">
+          <a
+            class="nav-link dropdown-toggle hover-links"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+          RECICLAR
+          </a>
+          <div class="dropdown-menu drow" aria-labelledby="navbarDropdown">
+            <button
+              type="button"
+              class="dropdown-item button_dropdown"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+            >
+            <fa-icon [icon]="faPlus" class="iconHeader"></fa-icon>
+
+              Crear Nueva Públicación
+            </button>
+            <a class="dropdown-item  button_dropdown" [routerLink]="['misPublicaciones']" routerLinkActive="router-link-active"  href="#">
+              <fa-icon [icon]="faNewspaper" class="iconHeader"></fa-icon>
+              Mis Publicaciones</a>
+            <div class="dropdown-divider"></div>
+            
+          </div>
+        </div>
+        <div class="col-sm-1 col-md-1 col-lg-1" (click)="DesactivarMessage();modificarMensajeUsuario()">
+          <a class="nav-link " [routerLink]="['chats']" >
+            <fa-icon [icon]="faSms" class="icon hover-links"></fa-icon>
+            <span *ngIf="newMessage||mensajePendienteUsuario" style="position: absolute; background-color: red;border-radius: 20px;font-size: 0.7em;padding: 1px;height: 10px;width: 10px;text-align: center;top: 15px"></span>
+
+        </a>
+        </div>
+        <div class="col-sm-1 col-md-1 col-lg-1" (click)="modificarNotificacionUsuario()">
+          <a class="nav-link " [routerLink]="['notificaciones']"  >
+            <fa-icon [icon]="faBell" class="icon hover-links"></fa-icon>
+           <span *ngIf="newNotificacion||notificacionPendienteUsuario" style="position: absolute; background-color:red;border-radius: 20px;font-size: 0.7em;padding: 1px;height: 10px;width: 10px;text-align: center;top: 15px"></span>
+
+        </a>
+        </div>
+        <div class="col-sm-1 col-md-2 col-lg-2">
+          <a
+            class="nav-link dropdown-toggle hover-links"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span class="mr-3" >{{
+              usuarioLogueado.nombres
+            }}</span>
+            <img src="{{usuarioLogueado.img}}" class="img-avatar" alt="" />
+          </a>
+          <div class="dropdown-menu drow" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item button_dropdown" [routerLink]="['configuracion']" routerLinkActive="router-link-active" >
+              <fa-icon [icon]="faUserCog" class="iconHeader"></fa-icon>
+              Configuración
+            </a>
+            <div class="dropdown-divider"></div>
+            <button
+              type="button"
+              (click)="cerrarSesion()"
+              class="dropdown-item button_dropdown"
+            >
+            <fa-icon [icon]="faSignOutAlt" class="iconHeader"></fa-icon>
+              Cerrar Sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</nav>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+#myModal  
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  id="exampleModalLongTitle">Crear Publicación</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          #closeBtnModal
+          (click)="resetForm(formGuardar)"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+        <div class="modal-body">
+        
+            <div *ngIf="isError === true" class="error2">
+              <div>Ingrese todos los campos porfavor</div>
+            </div>
+            <form
+            style="color:  #273444"
+            #formGuardar="ngForm"
+            role="form"
+            (ngSubmit)="guardarPublicacion(formGuardar)"
+            novalidate=""
+          >
+          <div class="form-group mt-5">
+            <label for="descripcion" class="label-input">Descripción * </label>
+            <input
+            [(ngModel)]="publicacion.descripcion"
+               #descripcion="ngModel"
+              required
+              minlength="10"
+              name="descripcion"
+              id="descripcion"
+              placeholder="Ingresa la descripción"
+              type="text"
+              class="form-control input"
+            />
+            <div  *ngIf="descripcion.touched && !descripcion.valid"  class="error">
+              <div *ngIf="descripcion.errors.required">Ingrese la descripción porfavor</div>
+              <div *ngIf="descripcion.errors.minlength">La descripción debe tener al menos 10 caracteres</div>
+              </div>
+         </div>
+         <div class="form-group mt-5">
+          <label for="my-input" class="label-input">Imagen *</label>
+          <input
+            [(ngModel)]="publicacion.img"
+            #img="ngModel"
+            id="img"
+            type="file"
+            name="img"
+            required
+            class="form-control-file"
+
+            (change)="asignarArchivo($event.target.files)" accept="image/*" 
+            
+          />
+          <div  *ngIf="!img.valid"  class="error">
+            <div *ngIf="img.errors.required">Escoja una imagen porfavor</div>
+            </div>
+        </div>
+          <div class="form-group mt-5">
+            <label for="my-input" class="label-input">Dirección *</label>
+            <input
+              [(ngModel)]="publicacion.direccion"
+              #direccion="ngModel"
+              required
+              minlength="10"
+              id="direccion"
+              placeholder="Ingresa la dirección en donde se encuentra"
+              type="text"
+              name="direccion"
+              class="form-control input"
+            />
+            <div  *ngIf="direccion.touched && !direccion.valid"  class="error">
+              <div *ngIf="direccion.errors.required">Ingrese la dirección porfavor</div>
+              <div *ngIf="direccion.errors.minlength">La dirección debe tener al menos 10 caracteres</div>
+              </div>
+          </div>
+
+          <div class="form-group mt-5">
+            <label for="my-input" class="label-input">Cantidad Aproximada en Kilogramos *</label>
+            <input
+              [(ngModel)]="publicacion.cantidad"
+              #cantidad="ngModel"
+              required
+              id="cantidad"
+              placeholder="Ingrese la cantidad en Kilogramos"
+              type="text"
+              pattern="[0-9]*"
+              name="cantidad"
+              class="form-control input"
+            />
+            <div  *ngIf="cantidad.touched && !cantidad.valid"  class="error">
+              <div *ngIf="cantidad.errors.required">Ingrese la cantidad porfavor</div>
+              <div *ngIf="cantidad.errors.pattern">Ingrese una cantidad válida porfavor</div>
+              </div>
+
+              <div *ngIf="isErrorCantidad === true" class="error">
+                <div>La cantidad debe estar entre 1 y 10000</div>
+              </div>
+          </div>
+
+          <div class="form-group mt-5">
+            <label for="my-input" class="label-input">Seleccione el tipo de residuo que desea reciclar *</label>
+            <select multiple="multiple" required #residuo="ngModel" name="residuo" [(ngModel)]="publicacion.residuos" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+              <option selected [value]="item" *ngFor="let item of arrayResiduos">{{item.descripcion}}</option>
+            </select>
+            <div  *ngIf="residuo.touched && !residuo.valid"  class="error">
+              <div *ngIf="residuo.errors.required">Ingrese el tipo porfavor</div>
+              </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Cerrar
+            </button>
+            <button type="submit"  class="btn btn-primary">Guardar Cambios</button>
+          </div>
+          </form>
+        </div>
+      
+
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<p class="mt-3"  style="font-size: 1.2em">Notificaciones</p>
+
+<div
+  class="d-flex justify-content-center"
+  *ngIf="notificacionesArray.length === 0 && arrayVacio === false"
+>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Cargando...</span>
+  </div>
+</div>
+<div
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+  *ngIf="arrayVacio === true"
+>
+  <p style="font-size: 1.5em">No tienes notificaciones</p>
+  <fa-icon [icon]="faBell" style="font-size: 100px"></fa-icon>
+</div>
+<div id="notificaciones" >
+  <div
+  *ngFor="let item of notificacionesArray.reverse()"
+  class="d-flex pb-3 justify-content-center"
+>
+  <div class="card card-chats">
+    <div class="card-header">
+      <div class="d-flex">
+        <div >
+          <p class="text-date" style="text-align: start">
+            {{ convertirFecha(item.fecha) }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+        <a *ngIf="item.tipo==='postulacion'" [routerLink]="['../postulacionesPublicacion',item.id_publicacion]" class="notificacion-link" >
+            <p class="card-text">{{ item.descripcion }}</p>
+        </a>
+        <a *ngIf="item.tipo==='postulacionAsignada'" [routerLink]="['../misRecolecciones']" class="notificacion-link" >
+          <p class="card-text">{{ item.descripcion }}</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+</div>
+

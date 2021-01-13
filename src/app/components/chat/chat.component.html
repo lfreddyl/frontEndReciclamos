@@ -1,0 +1,39 @@
+<p class="mt-3" style="font-size: 1.2em;">Mensajes</p>
+<div id="chat-mensajes" >
+  <div class="sms" *ngFor="let msg of mensajes">
+    <div class="smsRight" *ngIf="msg.id_usuario===usuarioLogueado._id">
+      <div class="smsEmisor" >
+     
+        <span class="sms-texto" style="color: white;">{{msg.descripcion}}</span><br>
+        <div style="display: flex; justify-content: flex-end;">
+          <span class="sms-fecha">{{convertirFecha(msg.fecha)}}</span>
+        </div>
+    </div>
+    </div>
+    <div class="smsLeft" *ngIf="msg.id_usuario!==usuarioLogueado._id">
+      <div class="smsReceptor" >
+        <span class="sms-texto">{{msg.descripcion}}</span><br>
+        <span class="sms-fecha" style="color: rgb(88, 103, 118);">{{convertirFecha(msg.fecha)}}</span>
+    </div>
+    </div>
+  </div>
+ 
+</div>
+<form (ngSubmit)="guardarMensaje()">
+<div class="d-flex">
+  <input type="text"
+  id="inputSms"
+         [(ngModel)]="sms.descripcion"
+         class="form-control input-sms"
+         name="texto"
+         placeholder="Escriba el Mensaje"
+         autofocus
+         
+         autocomplete="off">
+  <Button type="submit"  class="form-control icon-enviar">Enviar</Button>
+</div>
+
+</form>
+
+
+

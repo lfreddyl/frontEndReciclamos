@@ -1,0 +1,58 @@
+@import "../../../variables/global.scss";
+
+.sms{
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    
+}
+.smsRight{
+    display: flex;
+    width: auto;
+    justify-content: flex-end;
+    height: auto;
+    margin-top: 10px;
+    
+}
+.smsLeft{
+    display: flex;
+    width: auto;
+    justify-content: flex-start;
+    height: auto;
+    margin-top: 10px;
+    
+}
+.smsEmisor{
+    background-color:$color-secundario;
+    border-radius: 10px;
+    padding: 10px
+}
+.smsReceptor{
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px;
+}
+.sms-texto{
+    font-size: 0.9em;
+    
+}
+.sms-fecha{
+    
+    font-size: 0.8em;
+    color: $color-texto-h2;
+    
+}
+.icon-enviar{
+    width: 70px;
+    margin-top: 10px;
+    background-color: $color-secundario;
+    color:#fff ;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-left-width: 0px;
+}
+.input-sms{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-top: 10px;
+}

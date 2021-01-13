@@ -1,0 +1,288 @@
+<p class="mt-3" style="font-size: 1.2em">Mis Publicaciones</p>
+<div
+  class="d-flex justify-content-center"
+  *ngIf="publicacionesArray.length === 0 && arrayVacio === false"
+>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Cargando...</span>
+  </div>
+</div>
+<div
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+  *ngIf="arrayVacio === true"
+>
+  <p style="font-size: 1.5em">No has realizado ninguna publicación</p>
+  <fa-icon [icon]="faClipBoard" style="font-size: 100px"></fa-icon>
+  <p style="font-size: 1.5em">Realiza una ahora!</p>
+</div>
+<div
+  *ngFor="let item of publicacionesArray"
+  class="d-flex pb-3 justify-content-center"
+>
+  <div class="card card-publicaciones">
+    <div class="card-header">
+      <div class="d-flex">
+        <div class="div-img-header">
+          <img
+            src="{{ usuarioLogueado.img }}"
+            class="img-publicacion-user"
+            alt=""
+          />
+        </div>
+        <div class="div-text-header">
+          <p class="text-name">{{ item.nombres }} {{ item.apellidos }}</p>
+          <p class="text-date">{{ convertirFecha(item.fecha) }}</p>
+        </div>
+      </div>
+    </div>
+    <img class="img-fluid" src="{{ item.img }}" alt="Card image cap" />
+    <div class="card-body">
+      <p class="card-text">{{ item.descripcion }}</p>
+    </div>
+
+    <div class="card-body">
+      <div *ngFor="let residuos of item.residuos" >
+        <label class="label-tipo text-date"> {{ residuos.tipo }}</label>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <button
+        (click)="setValoreEliminacion(item.descripcion, item._id)"
+        class="button-publicaciones eliminar"
+        data-toggle="modal"
+        data-target="#deleteModal"
+      >
+        <fa-icon [icon]="faTrash" class="icon"></fa-icon>
+        Eliminar
+      </button>
+      <button
+        (click)="setPublicacion(item)"
+        class="button-publicaciones modificar"
+        data-toggle="modal"
+        data-target="#modificarModal"
+      >
+        <fa-icon [icon]="faEdit" class="icon"></fa-icon>
+        Modificar
+      </button>
+      <button
+        (click)="navegarPostulacion(item._id)"
+        class="button-publicaciones postulacion"
+      >
+        <fa-icon [icon]="faUsers" class="icon"></fa-icon>
+        Postulaciones
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Modificar -->
+<div
+  #myModal
+  class="modal fade"
+  id="modificarModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5
+          class="modal-title"
+          style="color: #273444"
+          id="exampleModalLongTitle"
+        >
+          Modificar Publicación
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="isError === true" class="error2">
+          <div>Ingrese todos los campos porfavor</div>
+        </div>
+        <form
+          style="color: #273444"
+          #formGuardar="ngForm"
+          role="form"
+          (ngSubmit)="guardarPublicacion(formGuardar)"
+          novalidate=""
+        >
+          <div class="form-group mt-5">
+            <label for="descripcion" class="label-input">Descripcion * </label>
+            <input
+              [(ngModel)]="publicacion.descripcion"
+              #descripcion="ngModel"
+              required
+              minlength="10"
+              name="descripcion"
+              id="descripcion"
+              placeholder="Ingresa la descripción"
+              type="text"
+              class="form-control input"
+            />
+            <div
+              *ngIf="descripcion.touched && !descripcion.valid"
+              class="error"
+            >
+              <div *ngIf="descripcion.errors.required">
+                Ingrese la descripcion porfavor
+              </div>
+              <div *ngIf="descripcion.errors.minlength">
+                La descripcion debe tener al menos 10 caracteres
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-5">
+            <label for="my-input" class="label-input">Imagen *</label>
+            <input
+              [(ngModel)]="publicacion.img"
+              #img="ngModel"
+              id="img"
+              type="file"
+              name="img"
+              class="form-control-file"
+             (change)="asignarArchivo($event.target.files)" accept="image/*" 
+
+            />
+          </div>
+          <div class="form-group mt-5">
+            <label for="my-input" class="label-input">Dirección *</label>
+            <input
+              [(ngModel)]="publicacion.direccion"
+              #direccion="ngModel"
+              required
+              minlength="10"
+              id="direccion"
+              placeholder="Ingresa la dirección en donde se encuentra"
+              type="text"
+              name="direccion"
+              class="form-control input"
+            />
+            <div *ngIf="direccion.touched && !direccion.valid" class="error">
+              <div *ngIf="direccion.errors.required">
+                Ingrese la direccion porfavor
+              </div>
+              <div *ngIf="direccion.errors.minlength">
+                La dirección debe tener al menos 10 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mt-5">
+            <label for="my-input" class="label-input">Cantidad *</label>
+            <input
+              [(ngModel)]="publicacion.cantidad"
+              #cantidad="ngModel"
+              required
+              id="cantidad"
+              placeholder="Ingrese la cantidad en Kilogramos"
+              type="text"
+              pattern="[0-9]*"
+              name="cantidad"
+              class="form-control input"
+            />
+            <div *ngIf="cantidad.touched && !cantidad.valid" class="error">
+              <div *ngIf="cantidad.errors.required">
+                Ingrese la cantidad porfavor
+              </div>
+              <div *ngIf="cantidad.errors.pattern">
+                Ingrese una cantidad válida porfavor
+              </div>
+            </div>
+
+            <div *ngIf="isErrorCantidad === true" class="error">
+              <div>La cantidad debe estar entre 1 y 10000</div>
+            </div>
+          </div>
+
+          <div class="form-group mt-5">
+            <label for="my-input" class="label-input"
+              >Seleccione el tipo de residuo que desee reciclar *</label
+            >
+            <select
+              [compareWith]="compareFn"
+              multiple="multiple"
+              #residuo="ngModel"
+              name="residuo"
+              [(ngModel)]="publicacion.residuos"
+              class="custom-select mr-sm-2"
+              id="inlineFormCustomSelect"
+            >
+              <option [value]="item" *ngFor="let item of arrayResiduos">
+                {{ item.descripcion }}
+              </option>
+            </select>
+            <div *ngIf="residuo.touched && !residuo.valid" class="error">
+              <div *ngIf="residuo.errors.required">
+                Ingrese el tipo porfavor
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              #closeBtnModal
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Delete-->
+
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content deleteModal">
+      <div class="modal-header">
+        <label id="exampleModalLabel"
+          >Esta seguro de eliminar esta publicación?</label
+        >
+      </div>
+      <div style="font-size: 0.9em" class="modal-body d-flex flex-column mt-3">
+        {{ descripcionDelete }}
+        <button
+          type="button"
+          class="button-publicaciones cancelar mt-3"
+          data-dismiss="modal"
+          #closeBtnModalEliminar
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          (click)="eliminarPublicacion()"
+          class="button-publicaciones eliminar mt-3"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

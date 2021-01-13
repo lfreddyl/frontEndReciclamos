@@ -1,0 +1,414 @@
+<div class="card">
+  <div class="card-header">
+    <strong> Configuración del Perfil</strong>
+  </div>
+  <div class="card-body" style="display: flex; justify-content: center">
+    <img
+      src="{{ usuarioLogueado.img }}"
+      style="width: 200px; height: 200px; border-radius: 9999px"
+      alt=""
+    />
+    <button
+      class="btn-moficar-perfil"
+      type="button"
+      data-toggle="collapse"
+      data-target="#collapseFotoPerfil"
+      aria-expanded="false"
+      aria-controls="collapseFotoPerfil"
+    >
+      <fa-icon [icon]="faEdit" class="iconHeader"></fa-icon>
+      Cambiar foto de perfil
+    </button>
+  </div>
+  <!--PASSWORD-->
+  <div class="collapse" id="collapseFotoPerfil">
+    <div class="card card-body">
+      <div *ngIf="isErrorContrasena === true" class="error2">
+        <div>La contraseña actual no es correcta</div>
+      </div>
+      <div *ngIf="isErrorContrasenaNueva === true" class="error2">
+        <div>La contreñas nuevas no coinciden</div>
+      </div>
+      <form
+        style="color: #050505"
+        #formGuardarPassword="ngForm"
+        role="form"
+        (ngSubmit)="cambiarPassword(formGuardarPassword)"
+        novalidate=""
+      >
+      <div class="form-group mt-5">
+        <label for="my-input" class="label-input">Imagen *</label>
+        <input
+          id="img"
+          type="file"
+          name="img"
+          class="form-control-file"
+          (change)="asignarArchivo($event.target.files)" accept="image/*" 
+          
+        />
+      </div>
+
+        <div class="d-flex" style="justify-content: center">
+          <button
+            type="button"
+            style="width: 100px"
+            class="btn btn-secondary"
+            data-toggle="collapse"
+          data-target="#collapseFotoPerfil"
+          aria-expanded="false"
+          aria-controls="collapseF#collapseFotoPerfil"
+          >
+            Cancelar
+          </button>
+ 
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr />
+
+  <!--DATOS GENERALES-->
+
+  <div class="card-body">
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-column" style="flex: 2">
+        <p class="settings-item"><strong>Nombres: </strong></p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 2">
+        <p>{{ usuarioLogueado.nombres }}</p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 1">
+        <button
+          class="btn-moficar-perfil"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseExample"
+          aria-expanded="false"
+          aria-controls="collapseExample"
+        >
+          <fa-icon [icon]="faEdit" class="iconHeader"></fa-icon>
+          Editar
+        </button>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-column" style="flex: 2">
+        <p class="settings-item"><strong>Apellidos: </strong></p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 2">
+        <p>{{ usuarioLogueado.apellidos }}</p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 1"></div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-column" style="flex: 2">
+        <p class="settings-item"><strong>Correo: </strong></p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 2">
+        <p>{{ usuarioLogueado.correo }}</p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 1"></div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-column" style="flex: 2">
+        <p class="settings-item"><strong>Teléfono: </strong></p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 2">
+        <p>{{ usuarioLogueado.telefono }}</p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 1"></div>
+    </div>
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-column" style="flex: 2">
+        <p class="settings-item"><strong>Dirección: </strong></p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 2">
+        <p>{{ usuarioLogueado.direccion }}</p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 1"></div>
+    </div>
+  </div>
+  <!--Collapse Editar Usuario-->
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <div *ngIf="isError === true" class="error2">
+        <div>Ingrese todos los campos porfavor</div>
+      </div>
+      <form
+        style="color: #273444"
+        #formGuardar="ngForm"
+        role="form"
+        (ngSubmit)="editarUsuario(formGuardar)"
+        novalidate=""
+      >
+        <div class="form-group mt-5">
+          <label for="descripcion" class="label-input">Nombres * </label>
+          <input
+            [(ngModel)]="usuarioLogueado.nombres"
+            #nombres="ngModel"
+            required
+            minlength="3"
+            name="nombres"
+            id="nombres"
+            placeholder="Ingrese sus nombres"
+            type="text"
+            class="form-control input"
+          />
+          <div *ngIf="nombres.touched && !nombres.valid" class="error">
+            <div *ngIf="nombres.errors.required">
+              Ingrese el nombre porfavor
+            </div>
+            <div *ngIf="nombres.errors.minlength">Su nombre es incorrecto</div>
+          </div>
+        </div>
+        <div class="form-group mt-5">
+          <label for="descripcion" class="label-input">Apellidos * </label>
+          <input
+            [(ngModel)]="usuarioLogueado.apellidos"
+            #apellidos="ngModel"
+            required
+            minlength="3"
+            name="apellidos"
+            id="apellidos"
+            placeholder="Ingrese sus apellidos"
+            type="text"
+            class="form-control input"
+          />
+          <div *ngIf="apellidos.touched && !apellidos.valid" class="error">
+            <div *ngIf="apellidos.errors.required">
+              Ingrese su apellido porfavor
+            </div>
+            <div *ngIf="apellidos.errors.minlength">
+              Su apellido es incorrecto
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mt-5">
+          <label for="descripcion" class="label-input">Correo * </label>
+          <input
+            [(ngModel)]="usuarioLogueado.correo"
+            #correo="ngModel"
+            required
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            name="correo"
+            id="correo"
+            placeholder="Ingrese su correo"
+            type="text"
+            class="form-control input"
+          />
+          <div *ngIf="correo.touched && !correo.valid" class="error">
+            <div *ngIf="correo.errors.required">Ingrese su correo porfavor</div>
+            <div *ngIf="correo.errors.pattern">
+              Ingrese un correo válido porfavor
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mt-5">
+          <label for="descripcion" class="label-input">Dirección * </label>
+          <input
+            [(ngModel)]="usuarioLogueado.direccion"
+            #direccion="ngModel"
+            required
+            minlength="3"
+            name="direccion"
+            id="direccion"
+            placeholder="Ingrese su dirección"
+            type="text"
+            class="form-control input"
+          />
+          <div *ngIf="direccion.touched && !direccion.valid" class="error">
+            <div *ngIf="direccion.errors.required">
+              Ingrese su dirección porfavor
+            </div>
+            <div *ngIf="direccion.errors.minlength">
+              Ingrese una dirección válida por favor
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mt-5">
+          <label for="descripcion" class="label-input">Teléfono* </label>
+          <input
+            [(ngModel)]="usuarioLogueado.telefono"
+            #telefono="ngModel"
+            required
+            pattern="[0-9]*"
+            name="telefono"
+            id="telefono"
+            placeholder="Ingrese su telefono"
+            type="text"
+            class="form-control input"
+          />
+          <div *ngIf="telefono.touched && !telefono.valid" class="error">
+            <div *ngIf="telefono.errors.required">
+              Ingrese su teléfono porfavor
+            </div>
+            <div *ngIf="telefono.errors.pattern">
+              Ingrese un teléfono válida por favor
+            </div>
+          </div>
+        </div>
+        <div class="d-flex" style="justify-content: center">
+          <button
+            type="button"
+            style="width: 100px"
+            class="btn btn-secondary"
+            data-toggle="collapse"
+            data-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="width: 100px; margin-left: 10px"
+          >
+            Actualizar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!--DatosPaswword-->
+  <div class="card-footer">
+    <div class="d-flex flex-row">
+      <div class="d-flex flex-column" style="flex: 2">
+        <p class="settings-item"><strong>Contraseña: </strong></p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 2">
+        <p>*****************</p>
+      </div>
+      <div class="d-flex flex-column" style="flex: 1">
+        <button
+          class="btn-moficar-perfil"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapsePassword"
+          aria-expanded="false"
+          aria-controls="collapsePassword"
+        >
+          <fa-icon [icon]="faEdit" class="iconHeader"></fa-icon>
+          Editar
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--PASSWORD-->
+  <div class="collapse" id="collapsePassword">
+    <div class="card card-body">
+      <div *ngIf="isErrorContrasena === true" class="error2">
+        <div>La contraseña actual no es correcta</div>
+      </div>
+      <div *ngIf="isErrorContrasenaNueva === true" class="error2">
+        <div>La contreñas nuevas no coinciden</div>
+      </div>
+      <form
+        style="color: #273444"
+        #formGuardarPassword="ngForm"
+        role="form"
+        (ngSubmit)="cambiarPassword(formGuardarPassword)"
+        novalidate=""
+      >
+        <div class="form-group mt-5">
+          <label for="descripcion" class="label-input"
+            >Contraseña Actual *
+          </label>
+          <input
+            [(ngModel)]="password"
+            #passwords="ngModel"
+            required
+            minlength="8"
+            name="password"
+            id="password"
+            placeholder="Ingrese su contraseña actual"
+            type="password"
+            class="form-control input"
+          />
+          <div *ngIf="passwords.touched && !passwords.valid" class="error">
+            <div *ngIf="passwords.errors.required">
+              Ingrese su contraseña actual
+            </div>
+            <div *ngIf="passwords.errors.minlength">
+              Su contraseña debe tener al menos 8 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="form-group mt-5">
+          <label for="descripcion" class="label-input"
+            >Contraseña Nueva *
+          </label>
+          <input
+            [(ngModel)]="contrasenaUno"
+            #contrauno="ngModel"
+            required
+            minlength="8"
+            name="contrauno"
+            id="contrauno"
+            placeholder="Ingrese su nueva Contraseña"
+            type="password"
+            class="form-control input"
+          />
+          <div *ngIf="contrauno.touched && !contrauno.valid" class="error">
+            <div *ngIf="contrauno.errors.required">
+              Ingrese su contraseña por favor
+            </div>
+            <div *ngIf="contrauno.errors.minlength">
+              Su contraseña debe tener al menos 8 caracteres
+            </div>
+          </div>
+        </div>
+        <div class="form-group mt-5">
+          <label for="descripcion" class="label-input"
+            >Repita la Contraseña Nueva *
+          </label>
+          <input
+            [(ngModel)]="contrasenaDos"
+            #contrados="ngModel"
+            required
+            minlength="8"
+            name="contrados"
+            id="contrados"
+            placeholder="Repita la Contraseña Nueva"
+            type="password"
+            class="form-control input"
+          />
+          <div *ngIf="contrados.touched && !contrados.valid" class="error">
+            <div *ngIf="contrados.errors.required">
+              Ingrese su contraseña por favor
+            </div>
+            <div *ngIf="contrados.errors.minlength">
+              Su contraseña debe tener al menos 8 caracteres
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex" style="justify-content: center">
+          <button
+            type="button"
+            style="width: 100px"
+            class="btn btn-secondary"
+            data-toggle="collapse"
+            data-target="#collapsePassword"
+            aria-expanded="false"
+            aria-controls="collapsePassword"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="width: 100px; margin-left: 10px"
+          >
+            Actualizar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+@import "../../../variables/global.scss";
+
+.content-login{
+    background: rgb(41,168,144);
+    background: linear-gradient(90deg, rgba(41,168,144,1) 0%, rgba(39,52,68,1) 98%);   
+    height: 100vh;
+}
+
+.label-input{
+    text-transform: uppercase;
+    font-size:$fuente-normal ;
+}
+.label{
+    
+    font-size:$fuente-normal ;
+}
+.input{
+background-color: rgba(255, 255, 255, 0);
+border-top: 0;
+border-left: 0;
+border-right: 0;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+border-color: $color-texto-h2;
+color: $color-texto-h1;
+font-size:$fuente-normal ;
+}
+::placeholder{
+    color: $color-texto-h2;
+    }
+.body{
+  
+    background-color: red;
+}
+.tabs-item {
+  height: 2em;
+  width: 10em;
+  border-radius: 20px;
+  text-align: center;
+  padding-top: 4px;
+  background-color: $color-secundario;
+  color: $color-texto-h1;
+  text-decoration: none;
+  margin-left:1em
+  
+}
+.title{
+    color: $color-texto-h1;
+}
+.header{
+    height: 10em;
+    font-size: $fuente-grande;
+}
+.links{
+text-decoration: underline;
+text-decoration-color: $color-secundario;
+color: $color-texto-h2;
+margin-left: 20px;
+}
+strong{
+    color: $color-texto-h1;
+}

@@ -1,0 +1,133 @@
+<p class="mt-3" style="font-size: 1.2em">Postulaciones</p>
+
+<div
+  class="d-flex justify-content-center"
+  *ngIf="postulacionesArray.length === 0 && arrayVacio === false"
+>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Cargando...</span>
+  </div>
+</div>
+<div
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+  *ngIf="arrayVacio === true && !postulacionAsignada"
+>
+  <p style="font-size: 1.5em">No existe postulaciones para esta publicación</p>
+  <fa-icon [icon]="faUsers" style="font-size: 100px"></fa-icon>
+  <p style="font-size: 1.5em">Espera a que realizen una!</p>
+</div>
+<div
+  *ngFor="let item of postulacionesArray"
+  class="d-flex pb-3 justify-content-center"
+>
+  <div class="card card-chats">
+    <div class="card-header">
+      <div class="d-flex">
+        <div class="d-flex" style="width: 75%">
+        <div class="div-img-header">
+          <a [routerLink]="['../../perfilEcologico',item._iduser]">
+          <img src="{{ item.imguser }}" class="img-publicacion-user" alt="" />
+        </a>
+        </div>
+        <div class="div-text-header">
+          <a [routerLink]="['../../perfilEcologico',item._iduser]">
+          <p class="text-name">{{ item.nombres }} {{ item.apellidos }}</p>
+        </a>
+        <p class="text-date">{{ convertirFecha(item.fecha) }}</p>
+
+        </div>
+      </div>
+        <div
+          class="div-text-header button-publicaciones asignado"
+          *ngIf="item.estado === 'asignado'"
+        >
+          <p class="text-date"> <fa-icon [icon]="faUserCheck" class="icon"></fa-icon><strong> Asignado </strong> </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body text-muted">
+      <button
+        class="button-publicaciones eliminar"
+        data-toggle="modal"
+        data-target="#deleteModal"
+        (click)="setId(item._id)"
+      >
+        <fa-icon [icon]="faTrash" class="icon"></fa-icon>
+        Eliminar
+      </button>
+      <button
+        *ngIf="item.estado === 'pendiente'&&publicacionSeleccionada.estado==='pendiente'"
+        class="button-publicaciones asignar"
+        (click)="asignarPostulacion(item._id,item._iduser,item.id_publicacion)"
+      >
+        <fa-icon [icon]="facheck" class="icon"></fa-icon>
+        Asignar
+      </button>
+      <button
+      disabled
+      *ngIf="item.estado === 'pendiente'&&publicacionSeleccionada.estado==='asignado'"
+      class="button-publicaciones asignar"
+      style="background-color: silver;"
+
+      (click)="asignarPostulacion(item._id,item._iduser,item.id_publicacion)"
+    >
+      <fa-icon [icon]="facheck" class="icon"></fa-icon>
+      Asignar
+    </button>
+      <button
+      disabled
+      *ngIf="item.estado === 'asignado'"
+      class="button-publicaciones asignar"
+      style="background-color: silver;"
+      (click)="asignarPostulacion(item._id,item._iduser,item.id_publicacion)"
+    >
+      <fa-icon [icon]="facheck" class="icon"></fa-icon>
+      Asignar
+    </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Delete-->
+
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content deleteModal">
+      <div class="modal-header">
+        <label id="exampleModalLabel"
+          >Esta seguro de eliminar esta postulación?</label
+        >
+      </div>
+      <div style="font-size: 0.9em" class="modal-body d-flex flex-column mt-3">
+        <button
+          type="button"
+          class="button-publicaciones cancelar mt-3"
+          data-dismiss="modal"
+          #closeBtnModalEliminar
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          (click)="eliminarPostulacion()"
+          class="button-publicaciones eliminar mt-3"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

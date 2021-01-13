@@ -1,0 +1,67 @@
+<div
+  *ngFor="let item of publicaciones"
+  class="d-flex pb-3 justify-content-center"
+>
+  <div class="card card-publicaciones">
+    <div class="card-header">
+      <div class="d-flex">
+        <div class="div-img-header">
+          <a [routerLink]="['../../perfilEcologico', item._iduser]">
+            <img
+              src="{{ item.imguser }}"
+              class="img-publicacion-user"
+              alt="imagenPublicacion"
+            />
+          </a>
+        </div>
+        <div class="div-text-header">
+          <p class="text-name">
+            <a
+              class="linknombre"
+              [routerLink]="['../../perfilEcologico', item._iduser]"
+              ><strong>{{ item.nombres }} {{ item.apellidos }}</strong></a
+            >
+          </p>
+          <p class="text-date">{{ convertirFecha(item.fecha) }}</p>
+        </div>
+      </div>
+    </div>
+
+    <img class="img-fluid" src="{{ item.img }}" alt="Card image cap" />
+    <div class="card-body">
+      <p class="card-text">{{ item.descripcion }}</p>
+      <p class="card-text"><Strong>Cantidad: </Strong>{{ item.cantidad }} KG</p>
+      <p class="card-text"><Strong>Dirección: </Strong>{{ item.direccion }}</p>
+    </div>
+
+    <div class="card-body">
+      <div *ngFor="let residuos of item.residuos" >
+        <label class="label-tipo"> {{ residuos.tipo }}</label>
+      </div>
+    </div>
+    <div
+      class="card-footer text-muted"
+      *ngIf="usuarioLogueado._id !== item._iduser"
+    >
+      <button
+        class="button-publicaciones mensaje"
+        data-toggle="modal"
+        data-target="#modalMensaje"
+        (click)="setIdPublicacion(item._iduser)"
+      >
+        <fa-icon [icon]="faSms" class="icon"></fa-icon>
+        Enviar Mensaje
+      </button>
+      <button
+        (click)="postular(usuarioLogueado._id, item._id)"
+        class="button-publicaciones postulacion"
+        data-toggle="modal"
+        data-target="#modificarModal"
+      >
+        <fa-icon [icon]="faUsers" class="icon"></fa-icon>
+        Postular
+      </button>
+    </div>
+  </div>
+</div>
+<app-sms [idReceptor]="idUsuarioPublicacion"> </app-sms>
