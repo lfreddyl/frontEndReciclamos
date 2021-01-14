@@ -4,6 +4,7 @@
     background: rgb(18,80,87);
     background: linear-gradient(90deg, rgba(18,80,87,1) 0%, rgba(13,46,68,1) 100%); 
     height: 100vh;
+    
 }
 
 .label-input{
@@ -90,6 +91,22 @@ strong{
   margin-top: 10px;
   position: relative;
   }
+  .login-text{
+    font-size: 5em;
+    font-family: 'SansPro';
+    color: #fff;
+  }
   .login{
     
+    overflow: hidden;
+  }
+  @media (max-width: 512px) {
+    .login-text{
+        font-size: 2em;
+        
+    }
+    .content-login{
+        height: auto;
+    }
+
   }

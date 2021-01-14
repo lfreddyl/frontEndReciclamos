@@ -4,9 +4,9 @@
     background-color: $color-secundario;
     height: 60px;
     position: sticky;
-  
     top: 0;
     z-index: 2;
+   
     
 }
 .drow{
@@ -87,4 +87,22 @@ a{
     .header{
         height: auto;
     }
+    .botones-header{
+    right: 100px;
+    }
+  }
+
+  @media (max-width: 1350px) {
+    
+    .botones-header{
+    right: 50px;
+    }
+
+  }
+  @media (max-width: 776px) {
+    
+    .botones-perfil{
+    right: 100px;
+    }
+
   }

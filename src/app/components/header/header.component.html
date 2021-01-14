@@ -1,18 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light row header">
-  <div class="col-5 col-sm-2 col-md-1 col-lg-2">
+  <div style="width: auto;">
     <a class="navbar-brand" style="color: rgb(255, 255, 255);font-size: 1em;font-family:fantasy;top: 3px;" href="#"
       ><img
         src="../../../assets/img/reciclar.png"
         height="50px"
         width="50px"
         alt="..."
-      /> Por un planeta mas limpio!</a
+      />Ayudamos al planeta</a
     >
   </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse col-12 col-sm-12 col-md-11 col-lg-9 " id="navbarSupportedContent">
+  <div class="collapse navbar-collapse col-12 col-sm-12 col-md-12 col-lg-10" id="navbarSupportedContent"  >
     <div class="col-12 col-sm-12 col-md-12 col-lg-6 "  >
       <div class="row justify-content-center">
         <div class="col-12">
@@ -35,9 +35,9 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-6" >
-      <div class="row align-items-center justify-content-center">
-        <div class="col-sm-4 col-md-6 col-lg-2">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6  botones-header" >
+      <div class="row align-items-center justify-content-end " >
+        <div class="d-flex">
           <a
             class="nav-link dropdown-toggle hover-links"
             href="#"
@@ -67,21 +67,21 @@
             
           </div>
         </div>
-        <div class="col-sm-1 col-md-1 col-lg-1" (click)="DesactivarMessage();modificarMensajeUsuario()">
+        <div class="d-flex" (click)="DesactivarMessage();modificarMensajeUsuario()">
           <a class="nav-link " [routerLink]="['chats']" >
             <fa-icon [icon]="faSms" class="icon hover-links"></fa-icon>
             <span *ngIf="newMessage||mensajePendienteUsuario" style="position: absolute; background-color: red;border-radius: 20px;font-size: 0.7em;padding: 1px;height: 10px;width: 10px;text-align: center;top: 15px"></span>
 
         </a>
         </div>
-        <div class="col-sm-1 col-md-1 col-lg-1" (click)="modificarNotificacionUsuario()">
+        <div class="d-flex" (click)="modificarNotificacionUsuario()">
           <a class="nav-link " [routerLink]="['notificaciones']"  >
             <fa-icon [icon]="faBell" class="icon hover-links"></fa-icon>
            <span *ngIf="newNotificacion||notificacionPendienteUsuario" style="position: absolute; background-color:red;border-radius: 20px;font-size: 0.7em;padding: 1px;height: 10px;width: 10px;text-align: center;top: 15px"></span>
 
         </a>
         </div>
-        <div class="col-sm-1 col-md-2 col-lg-2">
+        <div class="col-2 col-sm-1 col-md-2 col-lg-2 justify-content-sm-center">
           <a
             class="nav-link dropdown-toggle hover-links"
             href="#"
@@ -91,17 +91,16 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span class="mr-3" >{{
-              usuarioLogueado.nombres
-            }}</span>
+            
             <img src="{{usuarioLogueado.img}}" class="img-avatar" alt="" />
           </a>
-          <div class="dropdown-menu drow" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu drow " aria-labelledby="navbarDropdown">
+            <p style="text-align: center;"> <strong>{{usuarioLogueado.nombres}} {{usuarioLogueado.apellidos}}</strong></p>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item button_dropdown" [routerLink]="['configuracion']" routerLinkActive="router-link-active" >
               <fa-icon [icon]="faUserCog" class="iconHeader"></fa-icon>
               Configuración
             </a>
-            <div class="dropdown-divider"></div>
             <button
               type="button"
               (click)="cerrarSesion()"

@@ -12,7 +12,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+
+
   //LOGIN
+  
+  
   public isLog = false;
   nombre = '';
   public isError = false;
@@ -99,13 +103,11 @@ export class LoginComponent implements OnInit {
     if (form.valid) {
       try {
         this.servicios
-          .post('userSendCorreo/'+this.enviarCorreoUser, this.usuario)
+          .get('userSendCorreo/'+this.enviarCorreoUser)
           .subscribe((res: any) => {
             if (res.STATUS === 'SUCCESS') {
               this.showSuccess('Tu contraseña se ha enviado a tu correo registrado en la plataforma')
-              setTimeout(() => {
-                window.location.reload()
-              }, 4000);
+              
             } else {
               this.showError(res.MESSAGE)
             }
