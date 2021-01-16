@@ -2,13 +2,7 @@
   "name": "prueba",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "node server.js",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod"
+  
     
   },
   "private": true,
@@ -60,7 +54,7 @@
     "typescript": "~3.8.3"
   },
   "engines": {
-    "node": "~14.13.1",
-    "npm": "~7.0.14"
+    "node": "~15.5.1",
+    "npm": "~7.3.0"
   }
 }
