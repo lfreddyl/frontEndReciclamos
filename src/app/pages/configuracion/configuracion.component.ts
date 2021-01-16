@@ -69,7 +69,7 @@ export class ConfiguracionComponent implements OnInit {
           if(res.STATUS==='SUCCESS'){
             console.log(res)
             this.showSuccess('La imagen se ha actualizado correctamente')
-            //this.reloadPage()
+            this.reloadPage()
           }
        })
       }

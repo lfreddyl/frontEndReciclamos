@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   wsUrl: 'https://backendreciclamos.herokuapp.com/',
   apiUrl:'https://backendreciclamos.herokuapp.com/',
-  urlStorage:'15.228.77.70:4000/'
+  urlStorage:'http://15.228.77.70:4000/'
 };
 
 /*
