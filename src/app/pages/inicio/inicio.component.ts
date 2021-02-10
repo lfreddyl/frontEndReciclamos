@@ -8,7 +8,9 @@ import {
   faEdit,
   faClipboardList,
   faUsers,
-  faSms
+  faSms,
+  faMapMarkerAlt,
+  faCalculator
 } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/Servicios/storage.service';
@@ -24,6 +26,8 @@ export class InicioComponent implements OnInit {
   faClipBoard = faClipboardList;
   faUsers = faUsers;
   faSms = faSms;
+  faMapMarkerAlt=faMapMarkerAlt
+  faCalculator=faCalculator
 
   public usuarioLogueado:interfaceUsuario;
   public publicacionesArray: Array<interfacePublicacion> = [];

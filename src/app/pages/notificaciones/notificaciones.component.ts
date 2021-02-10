@@ -52,6 +52,7 @@ export class NotificacionesComponent implements OnInit {
         }, 50);
       });
   }
+  
   convertirFecha(value):string{
     moment.locale('es');   
    

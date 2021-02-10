@@ -2,12 +2,10 @@
 
 .header{
     background-color: $color-secundario;
-    height: 60px;
+    height:auto;
     position: sticky;
     top: 0;
     z-index: 2;
-   
-    
 }
 .drow{
     background-color: $color-primario;
@@ -81,28 +79,41 @@ a{
 .label-input{
     color: $color-texto-h1;
 }
+.nav-content-header{
+    display: flex;
+    width: 100%;
+}
+.div-search{
+    display: flex;
+    flex: 4;
+}
+.botones-header{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 100px;
+}
 
-
-  @media (max-width: 992px) {
-    .header{
-        height: auto;
-    }
-    .botones-header{
-    right: 100px;
-    }
-  }
-
-  @media (max-width: 1350px) {
-    
-    .botones-header{
-    right: 100px;
-    }
-
-  }
+  
   @media (max-width: 776px) {
     
-    .botones-perfil{
-    right: 105px;
+    .nav-content-header{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        
+    }
+    .div-search{
+        display: flex;
+        justify-content: center;
+        width: 75%;
+    }
+    .botones-header{
+        flex: 12;
+        display: flex;
+        justify-content: center;
+        
     }
 
   }

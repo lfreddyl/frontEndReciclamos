@@ -3,7 +3,7 @@
   class="d-flex justify-content-center"
   *ngIf="publicacionesArray.length === 0 && arrayVacio === false"
 >
-  <div class="spinner-border" role="status">
+  <div class="spinner-border text-success" role="status">
     <span class="sr-only">Cargando...</span>
   </div>
 </div>
@@ -90,7 +90,7 @@
   aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true"
 >
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5
@@ -234,13 +234,18 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              style="
+              height: 2em;
+              border: none;
+              border-radius: 20px;
+              width: 10em;margin-left: 10px;
+            "
               data-dismiss="modal"
               #closeBtnModal
             >
               Cancelar
             </button>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" class="tabs-item">Actualizar</button>
           </div>
         </form>
       </div>

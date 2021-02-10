@@ -14,10 +14,18 @@
   font-family: Archivo;
   src: url(assets/Archivo/Archivo-Regular.ttf) format("opentype");
 }
+@font-face{
+  font-family: Kanit;
+  src: url(assets/Kanit/Kanit-Medium.ttf) format("opentype");
+}
+@font-face{
+  font-family: Montserrat;
+  src: url(assets/Montserrat/Montserrat-Medium.ttf) format("opentype");
+}
 body {
   background-color:$color-primario ;
   color: $color-texto-h1;
-  font-family: 'Archivo', 'arial', sans-serif;
+  font-family: 'Monserrat', 'arial', sans-serif;
   font-size: 0.9em
 
 }
@@ -50,7 +58,7 @@ footer {
   background-color: $color-complementario;
   margin-bottom: 20px;
   border-radius: 10px;
-  width: 70%;
+  width: 80%;
 }
 .card-chats{
   background-color: $color-complementario;
@@ -191,7 +199,18 @@ position: relative;
   color: #fff
 }
 
-
+.tabs-item {
+  height: 2em;
+  width: 10em;
+  border-radius: 20px;
+  text-align: center;
+  
+  border: none;
+  background-color: $color-secundario;
+  color: $color-primario;
+  margin-left:1em
+  
+}
 
 .pendiente{
   background-color: rgb(226, 226, 226);

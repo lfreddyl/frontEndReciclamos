@@ -1,0 +1,8 @@
+.card-body{
+    display: flex; flex-direction: row
+}
+@media (max-width: 512px) {
+    .card-body{
+        display: flex; flex-direction: column
+    }
+  }

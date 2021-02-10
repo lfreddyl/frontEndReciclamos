@@ -20,7 +20,7 @@
       Cambiar foto de perfil
     </button>
   </div>
-  <!--PASSWORD-->
+  <!--password-->
   <div class="collapse" id="collapseFotoPerfil">
     <div class="card card-body">
       <div *ngIf="isErrorContrasena === true" class="error2">
@@ -36,8 +36,9 @@
         (ngSubmit)="cambiarPassword(formGuardarPassword)"
         novalidate=""
       >
+
       <div class="form-group mt-5">
-        <label for="my-input" class="label-input">Imagen *</label>
+        <label for="my-input" class="label-input">Elija la Imagen desde su dispositivo</label>
         <input
           id="img"
           type="file"
@@ -51,8 +52,13 @@
         <div class="d-flex" style="justify-content: center">
           <button
             type="button"
-            style="width: 100px"
-            class="btn btn-secondary"
+            
+            style="
+                height: 2em;
+                border: none;
+                border-radius: 20px;
+                width: 10em;margin-left: 10px;
+              "
             data-toggle="collapse"
           data-target="#collapseFotoPerfil"
           aria-expanded="false"
@@ -128,6 +134,8 @@
       </div>
       <div class="d-flex flex-column" style="flex: 1"></div>
     </div>
+
+
   </div>
   <!--Collapse Editar Usuario-->
   <div class="collapse" id="collapseExample">
@@ -149,6 +157,7 @@
             #nombres="ngModel"
             required
             minlength="3"
+            maxlength="50"
             name="nombres"
             id="nombres"
             placeholder="Ingrese sus nombres"
@@ -160,6 +169,7 @@
               Ingrese el nombre porfavor
             </div>
             <div *ngIf="nombres.errors.minlength">Su nombre es incorrecto</div>
+            <div *ngIf="nombres.errors.maxlength">Su nombre es incorrecto no puede tener mas de 50 caracteres</div>
           </div>
         </div>
         <div class="form-group mt-5">
@@ -169,6 +179,7 @@
             #apellidos="ngModel"
             required
             minlength="3"
+            maxlength="50"
             name="apellidos"
             id="apellidos"
             placeholder="Ingrese sus apellidos"
@@ -182,6 +193,7 @@
             <div *ngIf="apellidos.errors.minlength">
               Su apellido es incorrecto
             </div>
+            <div *ngIf="apellidos.errors.maxlength">Su apellido es incorrecto no puede tener mas de 50 caracteres</div>
           </div>
         </div>
 
@@ -191,7 +203,7 @@
             [(ngModel)]="usuarioLogueado.correo"
             #correo="ngModel"
             required
-            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            pattern="^[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z ]{2,4}$"
             name="correo"
             id="correo"
             placeholder="Ingrese su correo"
@@ -213,6 +225,7 @@
             #direccion="ngModel"
             required
             minlength="3"
+            maxlength="100"
             name="direccion"
             id="direccion"
             placeholder="Ingrese su dirección"
@@ -226,6 +239,8 @@
             <div *ngIf="direccion.errors.minlength">
               Ingrese una dirección válida por favor
             </div>
+            <div *ngIf="direccion.errors.maxlength">Su direccion es incorrecto no puede tener mas de 100 caracteres</div>
+
           </div>
         </div>
 
@@ -237,6 +252,8 @@
             required
             pattern="[0-9]*"
             name="telefono"
+            maxlength="10"
+            
             id="telefono"
             placeholder="Ingrese su telefono"
             type="text"
@@ -249,13 +266,19 @@
             <div *ngIf="telefono.errors.pattern">
               Ingrese un teléfono válida por favor
             </div>
+            <div *ngIf="telefono.errors.maxlength">Su telefono es incorrecto no puede tener mas de 10 caracteres</div>
+
           </div>
         </div>
         <div class="d-flex" style="justify-content: center">
           <button
             type="button"
-            style="width: 100px"
-            class="btn btn-secondary"
+            style="
+            height: 2em;
+            border: none;
+            border-radius: 20px;
+            width: 10em;margin-left: 10px;
+          "
             data-toggle="collapse"
             data-target="#collapseExample"
             aria-expanded="false"
@@ -265,7 +288,7 @@
           </button>
           <button
             type="submit"
-            class="btn btn-primary"
+            class="tabs-item"
             style="width: 100px; margin-left: 10px"
           >
             Actualizar
@@ -391,8 +414,12 @@
         <div class="d-flex" style="justify-content: center">
           <button
             type="button"
-            style="width: 100px"
-            class="btn btn-secondary"
+            style="
+            height: 2em;
+            border: none;
+            border-radius: 20px;
+            width: 10em;margin-left: 10px;
+          "
             data-toggle="collapse"
             data-target="#collapsePassword"
             aria-expanded="false"
@@ -402,7 +429,7 @@
           </button>
           <button
             type="submit"
-            class="btn btn-primary"
+            class="tabs-item"
             style="width: 100px; margin-left: 10px"
           >
             Actualizar
@@ -412,3 +439,5 @@
     </div>
   </div>
 </div>
+
+

@@ -5,6 +5,7 @@ import { StorageService } from '../../Servicios/storage.service';
 import { NgForm } from '@angular/forms';
 import { interfaceUsuario } from 'src/app/interfaces/interfaces';
 import { ToastrService } from 'ngx-toastr';
+import { toUnicode } from 'punycode';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,8 @@ export class LoginComponent implements OnInit {
   nombre = '';
   public isError = false;
   public isErrorLogin = false;
+  public cargando:boolean
+  public cargandoLogin:boolean
   
   //REGISTRO
   public isErrorRegistro = false;
@@ -53,8 +56,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   login(form: NgForm) {
+    let correoLowercase=this.credenciales.correo.toLowerCase();
+    let correoTrim=correoLowercase.replace(/ /g, "");
+    
+    this.cargandoLogin=true
     if (form.valid) {
       try {
+        this.credenciales.correo=correoTrim
         this.servicios
           .post('login', this.credenciales)
           .subscribe((res: any) => {
@@ -62,20 +70,28 @@ export class LoginComponent implements OnInit {
               this.storage.store(res.DATA);
               this.reloadPage();
             } else {
+              this.cargandoLogin=false
               this.onisErrorLogin();
-              console.log('NO estas logueado');
+             
             }
           });
       } catch (error) {
         alert('ocurrio un error inesperado');
         console.log(error);
+        this.cargandoLogin=false
       }
     } else {
+      this.cargandoLogin=false
       this.onisError();
     }
   }
   
+
   registro(form: NgForm) {
+    let correoLowercase=this.usuario.correo.toLowerCase();
+    let correoTrim=correoLowercase.replace(/ /g, "");
+    this.usuario.correo=correoTrim
+    this.cargando=true
     if (form.valid) {
       try {
         this.servicios
@@ -84,9 +100,11 @@ export class LoginComponent implements OnInit {
             if (res.STATUS === 'SUCCESS') {
               this.storage.store(res.DATA);
               this.showSuccess('Te has registrado en el sistema de manera correcta')
+              this.cargando=false
               this.reloadPage();
             } else {
               this.showError(res.MESSAGE)
+              this.cargando=false
              
               
             }
@@ -94,12 +112,17 @@ export class LoginComponent implements OnInit {
       } catch (error) {
         alert('ocurrio un error inesperado');
         console.log(error);
+        this.cargando=false
+
       }
     } else {
       this.onisErrorRegistro();
+      this.cargando=false
+
     }
   }
   enviarCorreo(form:NgForm){
+    this.cargando=true
     if (form.valid) {
       try {
         this.servicios
@@ -107,16 +130,19 @@ export class LoginComponent implements OnInit {
           .subscribe((res: any) => {
             if (res.STATUS === 'SUCCESS') {
               this.showSuccess('Tu contraseña se ha enviado a tu correo registrado en la plataforma')
-              
+              this.cargando=false
             } else {
               this.showError(res.MESSAGE)
+              this.cargando=false
             }
           });
       } catch (error) {
         alert('ocurrio un error inesperado');
         console.log(error);
+        this.cargando=false
       }
     } else {
+      this.cargando=false
       this.onisErrorEnviarCorreo();
     }
   }

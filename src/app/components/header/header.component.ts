@@ -7,7 +7,7 @@ import {
   faPlus,
   faUserCog,
   faSignOutAlt,
-  faRecycle
+  faRecycle,
 } from '@fortawesome/free-solid-svg-icons';
 import { StorageService } from '../../Servicios/storage.service';
 import {
@@ -34,15 +34,14 @@ export class HeaderComponent implements OnInit {
   public imgPublicacion: string = '';
   public bandera: boolean = false;
   public valorBusqueda: string = '';
-  public newMessage:boolean=false;
-  public newNotificacion:boolean=false;
+  public newMessage: boolean = false;
+  public newNotificacion: boolean = false;
   @ViewChild('closeBtnModal') closeBtn: ElementRef;
   public usuarioLogueado: interfaceUsuario;
   public arrayResiduos: Array<interfaceResiduo> = [];
   mensajesSubscription: Subscription;
-  public mensajePendienteUsuario:boolean=false;
-  public notificacionPendienteUsuario:boolean=false;
-
+  public mensajePendienteUsuario: boolean = false;
+  public notificacionPendienteUsuario: boolean = false;
 
   public publicacion: interfacePublicacion = {
     id_usuario: '',
@@ -66,16 +65,14 @@ export class HeaderComponent implements OnInit {
   faPlus = faPlus;
   faUserCog = faUserCog;
   faSignOutAlt = faSignOutAlt;
-  faRecycle=faRecycle
+  faRecycle = faRecycle;
   constructor(
     private storage: StorageService,
     private consumoApi: ConsumoApiService,
     private toastr: ToastrService,
     private router: Router,
     private chatService: ChatService
-  ) {
-    
-  }
+  ) {}
 
   ngOnInit(): void {
     this.usuarioLogueado = JSON.parse(this.storage.getStorage());
@@ -85,17 +82,17 @@ export class HeaderComponent implements OnInit {
         try {
           if (res.STATUS === 'SUCCESS') {
             this.usuarioLogueado = res.DATA;
-            this.mensajePendienteUsuario=res.DATA.mensaje_leido
-            this.notificacionPendienteUsuario=res.DATA.notificacion_leido
+            this.mensajePendienteUsuario = res.DATA.mensaje_leido;
+            this.notificacionPendienteUsuario = res.DATA.notificacion_leido;
           }
         } catch (error) {
           console.log(error);
         }
       });
-    
-    this.chatService.getUsuario().subscribe((usuario:interfaceUsuario)=>{
-      this.mensajePendienteUsuario=false
-    })  
+
+    this.chatService.getUsuario().subscribe((usuario: interfaceUsuario) => {
+      this.mensajePendienteUsuario = false;
+    });
     this.publicacion.id_usuario = this.usuarioLogueado._id;
     this.consumoApi.get('residuos').subscribe((res: any) => {
       try {
@@ -106,59 +103,57 @@ export class HeaderComponent implements OnInit {
     });
     this.mensajesSubscription = this.chatService
       .getMessages()
-      .subscribe((msg:any) => {
-        if (msg.id_usuario!==this.usuarioLogueado._id) {
-          this.newMessage=true
+      .subscribe((msg: any) => {
+        if (msg.id_usuario !== this.usuarioLogueado._id) {
+          this.newMessage = true;
         }
-        
       });
-      this.chatService
-      .getNotificaciones()
-      .subscribe((msg:any) => {
-        
-          this.newNotificacion=true
-        
-        
-      });
+    this.chatService.getNotificaciones().subscribe((msg: any) => {
+      this.newNotificacion = true;
+    });
   }
-  modificarNotificacionUsuario(){
-    this.notificacionPendienteUsuario=false;
-    this.modificarUsuarioNotificacion(this.usuarioLogueado._id)
-    console.log("presionado")
+  modificarNotificacionUsuario() {
+    this.notificacionPendienteUsuario = false;
+    this.modificarUsuarioNotificacion(this.usuarioLogueado._id);
+    console.log('presionado');
   }
-  modificarMensajeUsuario(){
-    this.mensajePendienteUsuario=false;
+  modificarMensajeUsuario() {
+    this.mensajePendienteUsuario = false;
     this.modificarUsuario(this.usuarioLogueado._id);
   }
-  modificarUsuario(value){
-    var modificarLeido={
-      mensaje_leido:false
-    }
-    this.consumoApi.put('users/'+value,modificarLeido).subscribe()
+  modificarUsuario(value) {
+    var modificarLeido = {
+      mensaje_leido: false,
+    };
+    this.consumoApi.put('users/' + value, modificarLeido).subscribe();
   }
-  modificarUsuarioNotificacion(value){
-    var modificarLeido={
-      notificacion_leido:false
-    }
-    this.consumoApi.put('users/'+value,modificarLeido).subscribe()
+  modificarUsuarioNotificacion(value) {
+    var modificarLeido = {
+      notificacion_leido: false,
+    };
+    this.consumoApi.put('users/' + value, modificarLeido).subscribe();
   }
-  DesactivarMessage(){
-    this.newMessage=false;
+  DesactivarMessage() {
+    this.newMessage = false;
   }
   navegarBusqueda() {
-    if(this.valorBusqueda!==''){
+    if (this.valorBusqueda !== '') {
       this.router
-      .navigateByUrl('/welcome/inicio', { skipLocationChange: true })
-      .then(() =>
-        this.router.navigate(['/welcome/busqueda/' + this.valorBusqueda])
-      );
+        .navigateByUrl('/welcome/inicio', { skipLocationChange: true })
+        .then(() =>
+          this.router.navigate(['/welcome/busqueda/' + this.valorBusqueda])
+        );
     }
   }
 
   cerrarSesion() {
     this.storage.removeStorage();
     window.location.reload();
-
+  }
+  handleKeyUp(e) {
+    if (e.keyCode === 13) {
+      this.navegarBusqueda()
+    }
   }
   reloadPage() {
     setTimeout(() => {
@@ -181,7 +176,6 @@ export class HeaderComponent implements OnInit {
       this.consumoApi
         .subirImagen('uploadpublicaciones/', this.archivo)
         .subscribe((res: any) => {
-
           if (res.STATUS === 'SUCCESS') {
             this.publicacion.img = String(apistorage + res.DATA);
             this.consumoApi

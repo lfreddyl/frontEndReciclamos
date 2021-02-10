@@ -1,0 +1,21 @@
+.graficos{
+    display: flex; justify-content: center; align-items: flex-start;flex-direction: row;
+}
+.card-body{
+    height: 250px;
+}
+.chart{
+    height: 400px; width: 400px; margin: auto
+}
+@media (max-width: 512px) {
+    .graficos{
+        display: flex;
+        flex-direction: column;
+    }
+    .card-body{
+        height: 350px;
+    }
+    .chart{
+        height: 300px; width: 300px; margin: auto
+    }
+  }

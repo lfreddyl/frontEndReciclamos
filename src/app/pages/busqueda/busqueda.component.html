@@ -27,7 +27,7 @@
     *ngFor="let item of arrayPublicaciones"
     class="d-flex pb-3 justify-content-center"
   >
-    <div class="card card-chats">
+    <div class="card card-publicaciones">
       <div class="card-header">
         <div class="d-flex">
           <div>
@@ -36,6 +36,7 @@
         </div>
       </div>
       <div class="card-body">
+        <div class="d-flex flex-column" style="flex: 2;justify-content:center">
         <p class="card-text">{{ item.descripcion }}</p>
         <p class="card-text">
           <strong>Dirección:</strong> {{ item.direccion }}
@@ -44,12 +45,14 @@
           <strong>Cantidad:</strong> {{ item.cantidad }} Kilogramos
         </p>
       </div>
-  
-      <div class="card-body">
-        <div *ngFor="let residuos of item.residuos">
-          <label class="label-tipo text-date"> {{ residuos.tipo }}</label>
+      <div class="d-flex" style="flex: 2" >
+        <a [routerLink]="['../publicacion',item._id]">
+          <img class="img-fluid" src="{{item.img}}" style="border-radius: 5px;" alt="Card image cap">
+        </a>
         </div>
       </div>
+  
+
       <div class="card-footer text-muted">
         <button
           (click)="navegarPublicacion(item._id)"

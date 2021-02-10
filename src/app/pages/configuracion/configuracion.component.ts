@@ -26,6 +26,8 @@ export class ConfiguracionComponent implements OnInit {
   };
 
   faEdit=faEdit
+  
+
   public isError = false;
   public isErrorContrasena = false;
   public isErrorContrasenaNueva = false;
@@ -56,6 +58,7 @@ export class ConfiguracionComponent implements OnInit {
   ngOnInit(): void {
 
   }
+ 
   asignarArchivo(files: FileList){
     var apistorage=environment.urlStorage+'imgpublicaciones/';
 
@@ -110,7 +113,7 @@ export class ConfiguracionComponent implements OnInit {
           this.consumoApi.put('users/'+this.usuarioLogueado._id,passwordNew).subscribe((res:any)=>{
             if(res.STATUS==='SUCCESS'){
               this.showSuccess('Tus Contraseña se ha Actualizado')
-              this.reloadPage()
+              this.cerrarSesion() 
             }
             else{
               this.showError()
@@ -186,6 +189,11 @@ export class ConfiguracionComponent implements OnInit {
     this.toastr.warning('Tu publicación se ha registrado', 'Error', {
       
     });
+  }
+  cerrarSesion() {
+    this.storage.removeStorage();
+    window.location.reload();
+
   }
 
 }

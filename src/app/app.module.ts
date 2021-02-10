@@ -44,6 +44,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ConfiguracionComponent } from './pages/configuracion/configuracion.component';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { NotificacionesComponent } from './pages/notificaciones/notificaciones.component';
+import { PresentationComponent } from './pages/presentation/presentation.component';
 const config: SocketIoConfig = {
   url: environment.wsUrl , options: {} };
 
@@ -77,6 +78,7 @@ const appRoutes:Routes=[...IndexRoutes,...HomeRoutes]
     ConfiguracionComponent,
     BusquedaComponent,
     NotificacionesComponent,
+    PresentationComponent,
   ],
   imports: [
     BrowserAnimationsModule,

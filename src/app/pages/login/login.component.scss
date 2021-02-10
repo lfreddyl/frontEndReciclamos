@@ -35,18 +35,7 @@ outline: none;
   
     background-color: red;
 }
-.tabs-item {
-  height: 2em;
-  width: 10em;
-  border-radius: 20px;
-  text-align: center;
-  
-  border: none;
-  background-color: $color-secundario;
-  color: $color-primario;
-  margin-left:1em
-  
-}
+
 .title{
     color: $color-secundario;
 }
@@ -92,8 +81,8 @@ strong{
   position: relative;
   }
   .login-text{
-    font-size: 5em;
-    font-family: 'SansPro';
+    font-size: 3em;
+    font-family: 'Montserrat';
     color: #fff;
   }
   .login{

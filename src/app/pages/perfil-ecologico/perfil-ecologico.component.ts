@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ChartDataSets, ChartType } from 'chart.js';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
+import {
+  faSms
+} from '@fortawesome/free-solid-svg-icons';
 import { interfacePostulacion, interfacePublicacion, interfaceUsuario } from 'src/app/interfaces/interfaces';
 import {ConsumoApiService} from '../../Servicios/consumo-api.service'
 import {StorageService} from '../../Servicios/storage.service'
@@ -12,7 +15,13 @@ import {StorageService} from '../../Servicios/storage.service'
 })
 export class PerfilEcologicoComponent implements OnInit {
 
-  
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'left',
+    }
+    
+  };
   public usuarioPerfil:interfaceUsuario={
     img:'',
     nombres:'',
@@ -20,6 +29,9 @@ export class PerfilEcologicoComponent implements OnInit {
     correo:'',
     password:''
   };
+  faSms=faSms
+  public idUsuarioPublicacion:string='';
+
   public idUsuario:string=''
   public publicacionesArray:Array<interfacePublicacion>=[]
   public tamanoPublicaciones:number
@@ -55,6 +67,7 @@ export class PerfilEcologicoComponent implements OnInit {
     this.idUsuario= this.router.snapshot.paramMap.get("idUsuario") 
     this.consumoApi.get('users/'+this.idUsuario).subscribe((res:any)=>{
       this.usuarioPerfil=res.DATA
+      
     })
   }
 
@@ -88,6 +101,9 @@ export class PerfilEcologicoComponent implements OnInit {
 
   })
     })
+  }
+  setIdReceptor(value){
+    this.idUsuarioPublicacion=value
   }
 
 }

@@ -1,0 +1,123 @@
+@import "../../../variables/global.scss";
+
+.header-presentacion{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('../../../assets/img/594341.jpg');
+    background-repeat:no-repeat ;
+    background-color: #FFF;
+}
+.nav-presentacion{
+    width: 100%;
+}
+.nav-links{
+    text-decoration: none;
+    color: #FFF;
+    font-size: 1.5em;
+   
+}
+.nav-links:hover{
+   
+    color: rgb(140, 215, 19);
+   
+   
+}
+.nav-item{
+    width: 100px;
+    
+}.parrafo-texto-header{
+    margin-top: 35vh;
+    text-align: center;
+
+}
+h1{
+    color: #FFF;
+    font-size: 3em;
+    font-family: 'Monserrat',Arial, Helvetica, sans-serif
+
+}
+h2{
+    color: rgb(225, 225, 225);
+    font-size: 1.5em;
+    margin-top: 50px;
+}
+.reciclar-presentacion{
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 254, 254);
+    height: 100vh;
+
+}
+.recolectar-presentacion{
+    display: flex;
+    align-items: center;
+    background: rgb(18,80,87);
+    background: linear-gradient(90deg, rgba(18,80,87,1) 0%, rgba(13,46,68,1) 100%);
+    height: 100vh;
+}
+.reciclar-flex{
+    
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.icon-presentacion{
+    font-size: 3em;
+    color: $color-secundario;
+}
+.icon-presentacion:hover{
+    color: rgb(26, 98, 147);
+}
+.fixes-ancla-inicio{
+    position: fixed;
+    z-index: 9999;
+}
+
+.contenedor-link-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 200px;
+    border-radius: 20px;
+    border: 1px solid rgb(140, 215, 19);
+    
+}
+.contenedor-link-login:hover{
+    color: #FFF;
+    background-color:rgb(140, 215, 19);
+    
+}
+.link-login{
+    text-decoration: none;
+    color: #FFF;
+    font-size: 1.5em;
+}
+.footer-presentacion{
+    height: 10vh;
+    background-color: rgb(10, 15, 17);
+}
+.reciclar-div{
+    width: 50%;
+}
+.reciclar-img{
+    width: 40%;
+}
+@media(max-width:512px){
+    .reciclar-flex{
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .reciclar-div{
+        width: 100%;
+    }
+    .reciclar-img{
+        width: 100%;
+        height: auto;
+    }
+}
