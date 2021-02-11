@@ -1,7 +1,11 @@
 import { Component, HostListener, ElementRef} from '@angular/core';
 import {trigger,style,transition,animate,state} from '@angular/animations'
 import {
-  faChevronCircleUp
+  faChevronCircleUp,
+  faRecycle,
+  faSms,
+  faBell,
+  faUsers
 } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-presentation',
@@ -14,7 +18,7 @@ import {
         opacity:1
       })),
       state('normal', style({
-        transform:'translateX(-100%)',
+        transform:'translateX(-150%)',
         opacity:1
       })),
       transition('scrolled => normal', animate('1s')),
@@ -37,6 +41,11 @@ import {
 })
 export class PresentationComponent  {
   faChevronCircleUp=faChevronCircleUp
+  faRecycle=faRecycle
+  faSms=faSms
+  faUsers=faUsers
+  faBell=faBell
+
   state = 'normal'
   constructor(public el: ElementRef) { }
   @HostListener('window:scroll', ['$event'])

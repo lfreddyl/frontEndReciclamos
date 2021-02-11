@@ -1,8 +1,11 @@
 @import "../../../variables/global.scss";
 
 .content-login{
-    background: rgb(18,80,87);
-    background: linear-gradient(90deg, rgba(18,80,87,1) 0%, rgba(13,46,68,1) 100%); 
+    background-color: rgb(16, 26, 29);
+    background: url('../../../assets/img/pexels-no-name-66997.jpg');
+    background-repeat:no-repeat ;
+    background-size:cover;
+    background-position: center;
     height: 100vh;
     
 }

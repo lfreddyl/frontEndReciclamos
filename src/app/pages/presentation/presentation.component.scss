@@ -3,9 +3,11 @@
 .header-presentacion{
     width: 100%;
     min-height: 100vh;
-    background-image: url('../../../assets/img/594341.jpg');
+    background-color: rgb(16, 26, 29);
+    background: url('../../../assets/img/pexels-no-name-66997.jpg');
     background-repeat:no-repeat ;
-    background-color: #FFF;
+    background-size:cover;
+    background-position: center;
 }
 .nav-presentacion{
     width: 100%;
@@ -23,7 +25,8 @@
    
 }
 .nav-item{
-    width: 100px;
+    width: 170px;
+    text-align:start;
     
 }.parrafo-texto-header{
     margin-top: 35vh;
@@ -62,10 +65,20 @@ h2{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    
 }
+
 .icon-presentacion{
     font-size: 3em;
     color: $color-secundario;
+}
+.icon-presentacion-funcionalidades{
+    font-size: 40px;
+    margin-right: 5px;
+    color: $color-secundario;
+}
+.icon-presentacion-section{
+    font-size: 200px;
 }
 .icon-presentacion:hover{
     color: rgb(26, 98, 147);
@@ -97,7 +110,9 @@ h2{
 }
 .footer-presentacion{
     height: 10vh;
-    background-color: rgb(10, 15, 17);
+    background-color: rgb(16, 26, 29);
+    clear: both;
+    bottom: 0;
 }
 .reciclar-div{
     width: 50%;
@@ -105,13 +120,56 @@ h2{
 .reciclar-img{
     width: 40%;
 }
-@media(max-width:512px){
+.titulo-funcionalidades{
+    display: flex;
+    height: 15vh;
+   justify-content: center;
+    align-items: center;
+}
+.funcionalidades-presentacion{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+    align-items: center;
+    
+}
+.funcionalidad-flex{
+    
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: auto;
+    
+    
+    
+}
+.funcionalidades-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedor-funcionalidades-flex{
+padding: 10px;
+display: flex;
+flex-direction: column;
+width: auto;
+margin-left: 10px;
+margin-right: 10px;
+height: auto;border: 0.5px solid rgb(105, 171, 191);
+border-radius: 20px;
+box-shadow: -25px -6px 113px -82px linear-gradient(90deg, rgba(18,80,87,1) 0%, rgba(13,46,68,1) 100%);
+
+}
+
+@media(max-width:768px){
     .reciclar-flex{
         margin: auto;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        
     }
     .reciclar-div{
         width: 100%;
@@ -119,5 +177,20 @@ h2{
     .reciclar-img{
         width: 100%;
         height: auto;
+    }
+    .funcionalidad-flex{
+    
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto
+    }
+    .funcionalidades-presentacion{
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        height:auto
+        
     }
 }

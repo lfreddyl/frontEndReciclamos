@@ -28,6 +28,9 @@
             <li class="nav-item">
               <a class="nav-links" href="#Recolectar"> Recolectar</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-links" href="#Funcionalidades"> Funcionalidades</a>
+            </li>
           </ul>
           <div class="contenedor-link-login">
             <a [routerLink]="['/login']" class="link-login"
@@ -37,7 +40,7 @@
         </div>
       </nav>
 
-      <div class="parrafo-texto-header" >
+      <div class="parrafo-texto-header">
         <img
           src="../../../assets/img/reciclar.png"
           width="92em"
@@ -65,67 +68,185 @@
 
 <section class="reciclar-presentacion" id="Reciclar">
   <div class="container" [@scrollAnimation]="state">
-    <div class="reciclar-flex" >
-      <div class="d-flex flex-column reciclar-div" >
-        <p style="text-align: center; font-size: 2em; color: rgb(30, 44, 62);font-weight: bold">
-          ¿Tienes objetos que quieras reciclar?
-        </p>
-        <p
-          style="font-size: 1.5em; text-align: justify; color: rgb(48, 69, 97)"
-        >
-          Utiliza nuestra funciónalidad para realizar una publicación, podrás
-          gestionar todas tus publicaciones y también, tienes la opción de
-          elejir a la persona que tu quieras para la recolección de los residuos
-          en tu domicilio o lugar de trabajo.
-        </p>
-      </div>
-      <div class="d-flex reciclar-img" >
-        <img
-          class="img-fluid"
-          src="../../../assets/img/publicacion.png"
-          alt=""
-        />
+    <div style="display: flex; justify-content: center; align-items: center; height: 40vh">
+      <fa-icon
+      [icon]="faRecycle"
+      class="icon-presentacion-section"
+      style="
+      color: rgb(80, 152, 8)"
+    ></fa-icon>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <div class="reciclar-flex" >
+        <div class="d-flex flex-column reciclar-div" >
+          <p style="text-align: center; font-size: 2em; color: rgb(30, 44, 62);font-weight: bold">
+            ¿Tienes objetos que quieras reciclar?
+          </p>
+          <p
+            style="font-size: 1.5em; text-align: justify; color: rgb(48, 69, 97)"
+          >
+            Utiliza nuestra funciónalidad para realizar una publicación, podrás
+            gestionar todas tus publicaciones y también, tienes la opción de
+            elejir a la persona que tu quieras para la recolección de los residuos
+            en tu domicilio o lugar de trabajo.
+          </p>
+        </div>
+        <div class="d-flex reciclar-img" >
+          <img
+            class="img-fluid"
+            src="../../../assets/img/publicacion.png"
+            alt=""
+            style="border-radius: 50px;"
+          />
+        </div>
       </div>
     </div>
+    
   </div>
 </section>
 
 <section class="recolectar-presentacion" id="Recolectar" >
-  <div class="container" [@scrollAnimationdos]="state">
-    <div class="reciclar-flex" >
-      <div class="d-flex reciclar-div" >
-        <img
-          class="img-fluid"
-          src="../../../assets/img/postulaciones.png"
-          alt=""
-        />
+  <div class="container" style="display:flex;flex-direction: column ;align-items: center;justify-content: center;" [@scrollAnimationdos]="state">
+    <div style="display: flex; justify-content: center; align-items: center; height: 40vh">
+      <fa-icon
+      [icon]="faUsers"
+      class="icon-presentacion-section"
+      style="
+      color: rgb(244, 244, 244)"
+    ></fa-icon>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <div class="reciclar-flex" >
+        <div class="d-flex reciclar-div" >
+          <img
+            class="img-fluid"
+            src="../../../assets/img/postulaciones.png"
+            alt=""
+            style="border-radius: 50px;"
+          />
+        </div>
+        <div class="d-flex flex-column reciclar-img">
+          <p
+            style="text-align: center; font-size: 2em; color: rgb(255, 255, 255);font-weight: bold;"
+          >
+            ¿Deseas ser un recolector de residuos?
+          </p>
+          <p
+            style="
+              font-size: 1.5em;
+              text-align: justify;
+              color: rgb(188, 210, 238);
+            "
+          >
+            Nuestro sistema te permite postular a las publicaciones de reciclaje
+            que realizan los usuarios, tendrás la opción de comunicarte mediante
+            el chat en tiempo real y un sistema de notificaciones que te mantedrá
+            al tanto de tus actividades.
+          </p>
+        </div>
       </div>
-      <div class="d-flex flex-column reciclar-img">
-        <p
-          style="text-align: center; font-size: 2em; color: rgb(255, 255, 255);font-weight: bold;"
-        >
-          ¿Deseas ser un recolector de residuos?
-        </p>
-        <p
-          style="
-            font-size: 1.5em;
-            text-align: justify;
-            color: rgb(188, 210, 238);
-          "
-        >
-          Nuestro sistema te permite postular a las publicaciones de reciclaje
-          que realizan los usuarios, tendrás la opción de comunicarte mediante
-          el chat en tiempo real y un sistema de notificaciones que te mantedrá
-          al tanto de las actividades que estes inmerso.
+    </div>
+   
+  </div>
+</section>
+
+<section class="funcionalidades-presentacion"  id="Funcionalidades">
+  <div class="container" [@scrollAnimation]="state">
+    <div class="titulo-funcionalidades">
+      <div style="display: flex;align-items: center;">
+        <p style="text-align: center; font-size: 2em; color: rgb(30, 44, 62);font-weight: bold">
+          Funcionalidades
         </p>
       </div>
     </div>
+    <div class="funcionalidad-flex" >
+      <div class="contenedor-funcionalidades-flex">
+        <p style="text-align: center;width: 100%;font-size: 1.5em; color: rgb(48, 69, 97)"><fa-icon
+          [icon]="faSms"
+          class="icon-presentacion-funcionalidades"
+        ></fa-icon
+      >Chat</p>
+        <div class="d-flex funcionalidades-img" >
+          <img
+            class="img-fluid"
+            src="../../../assets/img/chat.png"
+            alt=""
+            style="border-radius: 20px;"
+          />
+        </div>
+        <div class="d-flex flex-column funcionalidades-div" >
+  
+          <p
+            style="font-size: 1.5em; text-align: justify; color: rgb(48, 69, 97);padding-top:20px"
+          >
+            Utiliza nuestra funciónalidad de chat en tiempo real para comunicarte con los demás usuarios registrados en la plataforma para concretar la recolección o resolver cualquier duda que tengas.
+          </p>
+        </div>
+      </div>
+      <div class="contenedor-funcionalidades-flex">
+        <p style="text-align: center;width: 100%;font-size: 1.5em; color: rgb(48, 69, 97)"><fa-icon
+          [icon]="faBell"
+          class="icon-presentacion-funcionalidades"
+        ></fa-icon
+      >Notificaciones</p>
+
+        <div class="d-flex funcionalidades-img" >
+          <img
+            class="img-fluid"
+            src="../../../assets/img/notificaciones.png"
+            alt=""
+            style="border-radius: 20px;"
+          />
+        </div>
+        <div class="d-flex flex-column funcionalidades-div" >
+  
+          <p
+            style="font-size: 1.5em; text-align: justify; color: rgb(48, 69, 97);padding-top:20px"
+          >
+            El sistema de notificaciones te mantendrá al tanto de las publicaciones que publiques, te notificará si alguien ha
+            postulado o si eres recolector avisará si han aceptado tu postulación.
+          </p>
+        </div>
+      </div>
+      <div class="contenedor-funcionalidades-flex">
+        <p style="text-align: center;width: 100%;font-size: 1.5em; color: rgb(48, 69, 97)"><fa-icon
+          [icon]="faUsers"
+          class="icon-presentacion-funcionalidades"
+        ></fa-icon
+      >Postulaciones</p>
+
+        <div class="d-flex funcionalidades-img" >
+          <img
+            class="img-fluid"
+            src="../../../assets/img/mispostulaciones.png"
+            alt=""
+          />
+        </div>
+        <div class="d-flex flex-column funcionalidades-div" >
+  
+          <p
+            style="font-size: 1.5em; text-align: justify; color: rgb(48, 69, 97);padding-top:20px"
+          >
+          La funcionalidad de postulaciones permitirá a los usuarios que realizan una publicación asignar a un determinado usuario que postuló para que se encargue de la recolección,
+          
+          </p>
+        </div>
+      </div>
+
+    </div>
+    
   </div>
 </section>
+
 <section class="footer-presentacion">
 <div class="container" >
     <div style="display: flex;justify-content: center;align-items: center;width: 100%;height:70px;">
-        <p style="color: #fff ;text-align: center"> © 2021 Reciclamos </p>
+        <p style="color: #fff ;text-align: center"> <img
+          src="../../../assets/img/reciclar.png"
+          width="42em"
+          height="42em"
+          alt="Reciclamos"
+        />© 2021 Reciclamos </p>
     </div>
 </div>
 </section>

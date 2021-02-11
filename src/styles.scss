@@ -88,6 +88,8 @@ color: $color-texto-secundario
 }
 .card-text{
   font-size: $fuente-pequena;
+  text-align: justify;
+  padding-right: 1em;
 }
 .text-name{
 font-size: $fuente-normal;

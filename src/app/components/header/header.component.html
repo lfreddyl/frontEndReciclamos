@@ -165,8 +165,10 @@
             <input
             [(ngModel)]="publicacion.descripcion"
                #descripcion="ngModel"
+              
               required
               minlength="10"
+              maxlength="300"
               name="descripcion"
               id="descripcion"
               placeholder="Ingresa la descripción"
@@ -176,6 +178,7 @@
             <div  *ngIf="descripcion.touched && !descripcion.valid"  class="error">
               <div *ngIf="descripcion.errors.required">Ingrese la descripción porfavor</div>
               <div *ngIf="descripcion.errors.minlength">La descripción debe tener al menos 10 caracteres</div>
+              <div *ngIf="descripcion.errors.maxlength">La descripción solo puede contener 300 caracteres</div>
               </div>
          </div>
          <div class="form-group mt-5">
@@ -203,6 +206,7 @@
               #direccion="ngModel"
               required
               minlength="10"
+              maxlength="200"
               id="direccion"
               placeholder="Ingresa la dirección en donde se encuentra"
               type="text"
@@ -212,6 +216,7 @@
             <div  *ngIf="direccion.touched && !direccion.valid"  class="error">
               <div *ngIf="direccion.errors.required">Ingrese la dirección porfavor</div>
               <div *ngIf="direccion.errors.minlength">La dirección debe tener al menos 10 caracteres</div>
+              <div *ngIf="direccion.errors.minlength">La dirección debe tener no puede tener mas de 200 caracteres</div>
               </div>
           </div>
 
